@@ -29,6 +29,7 @@ body {
   background: #d62027;
   color: #fff;
   font-weight: 600;
+  position: relative;
 }
 
 .product {

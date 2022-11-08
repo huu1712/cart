@@ -78,10 +78,7 @@ const showPhone = document.querySelector('.product-list').innerHTML = listPhone.
 
 
 let buttonAdd = document.querySelectorAll('.product-list .product-item')
-let cartEmpty = document.querySelector('.modal .modal-cart .modal-cart_empty')
-let cartItems = document.querySelector('.modal .modal-cart .modal-cart_item')
 
-cartItems.style.display = 'none'
 
 
 buttonAdd.forEach((itemAdd) => {
@@ -115,6 +112,8 @@ buttonAdd.forEach((itemAdd) => {
 
             let phoneNew = [phoneId, phoneImage, phoneCartName, selectedColor, selectedMemory, phoneCartPrice.trim(), phoneQuantity]
 
+            localStorage.setItem("phoneNew", phoneNew);
+
             if (selectedColor === undefined || selectedMemory === undefined) {
                 alert('Vui lòng chọn Màu sắc hoặc dung lượng')
             } else {
@@ -133,23 +132,16 @@ buttonAdd.forEach((itemAdd) => {
                     listProductInCart.push(phoneNew)
                     alert('Thêm sản phẩm thành công')
                     console.log('dsadas ' + listProductInCart)
-
+                    document.querySelector('.countItem').innerHTML = listProductInCart.length
                 }
 
             }
         }
 
-        if (listProductInCart.length > 0) {
-            console.log('co san pham ' + listProductInCart)
-            cartEmpty.style.display = 'none'
-            cartItems.style.display = 'block'
-
-        }
     });
 
 
 });
-
 
 
 
