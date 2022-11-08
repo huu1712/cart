@@ -2,27 +2,21 @@ function randomId() {
     return Math.floor(Math.random() * 100);
 }
 
-const listPhone = [
-    {
-        id: randomId(),
-        name: "iPhone 14 Pro Max",
-        priceOld: 35000000,
-        priceNew: 32000000,
-        image: "images/img1.png",
-        color: [
-            {name: "Deep Purple", value: "#736879"},
-            {name: "Silver", value: "#F3E5C8"},
-            {name: "Dark", value: "#EFF1F0"},
-            {name: "Gold", value: "#3B3A38"}
-        ],
-        memory: [
-            {name: "128GB", value: "128GB"},
-            {name: "256GB", value: "256GB"},
-            {name: "512GB", value: "512GB"},
-            {name: "1TB", value: "1TB"}
-        ]
-    },
-    // {
+const listPhone = [{
+    id: randomId(),
+    name: "iPhone 14 Pro Max",
+    priceOld: 35000000,
+    priceNew: 32000000,
+    image: "images/img1.png",
+    color: [{name: "Deep Purple", value: "#736879"}, {name: "Silver", value: "#F3E5C8"}, {
+        name: "Dark",
+        value: "#EFF1F0"
+    }, {name: "Gold", value: "#3B3A38"}],
+    memory: [{name: "128GB", value: "128GB"}, {name: "256GB", value: "256GB"}, {
+        name: "512GB",
+        value: "512GB"
+    }, {name: "1TB", value: "1TB"}]
+}, // {
     //     id: randomId(),
     //     name: "iPhone 14 Plus",
     //     priceOld: 28000000,
@@ -69,14 +63,12 @@ const showPhone = document.querySelector('.product-list').innerHTML = listPhone.
                 <p class="product-item_price">
                     <span class="product-item_price-new">
                         ${item.priceNew.toLocaleString("it-IT", {
-        style: "currency",
-        currency: "VND",
+        style: "currency", currency: "VND",
     })}
                     </span>
                     <span class="product-item_price-old">
                         ${item.priceOld.toLocaleString("it-IT", {
-        style: "currency",
-        currency: "VND",
+        style: "currency", currency: "VND",
     })}
                     </span>
                 </p>
@@ -84,7 +76,14 @@ const showPhone = document.querySelector('.product-list').innerHTML = listPhone.
             </div>`
 }).join('')
 
+
 let buttonAdd = document.querySelectorAll('.product-list .product-item')
+let cartEmpty = document.querySelector('.modal .modal-cart .modal-cart_empty')
+let cartItems = document.querySelector('.modal .modal-cart .modal-cart_item')
+
+cartItems.style.display = 'none'
+
+
 buttonAdd.forEach((itemAdd) => {
     itemAdd.addEventListener("click", function (event, data) {
         if (event.target.classList.contains("btn-buy")) {
@@ -121,24 +120,39 @@ buttonAdd.forEach((itemAdd) => {
             } else {
                 let checkIsset = false;
                 listProductInCart.forEach(itemPhone => {
-                    if(phoneNew[phoneId] === itemPhone[phoneId]){
+                    if (phoneNew[phoneId] === itemPhone[phoneId]) {
                         checkIsset = true;
                         alert('Sản phẩm đã có trong giỏ hàng')
+                        listProductInCart.splice(phoneNew, -1)
+                        console.log('cart sau khi them trung ' + listProductInCart)
                         return listProductInCart
                     }
                 })
 
                 if (checkIsset == false) {
                     listProductInCart.push(phoneNew)
-                    console.log(listProductInCart)
+                    alert('Thêm sản phẩm thành công')
+                    console.log('dsadas ' + listProductInCart)
+
                 }
 
             }
+        }
 
-            console.log('san pham trong gio la ' + listProductInCart)
-
+        if (listProductInCart.length > 0) {
+            console.log('co san pham ' + listProductInCart)
+            cartEmpty.style.display = 'none'
+            cartItems.style.display = 'block'
 
         }
     });
+
+
 });
+
+
+
+
+
+
 

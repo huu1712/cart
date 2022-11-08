@@ -97,5 +97,11 @@ body {
   margin: 70px auto 0;
   background: #fff;
 }
+.modal-cart_empty {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /*# sourceMappingURL=style.css.map */
