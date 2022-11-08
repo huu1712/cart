@@ -124,6 +124,8 @@ buttonAdd.forEach((itemAdd) => {
                     if(phoneNew[phoneId] === itemPhone[phoneId]){
                         checkIsset = true;
                         alert('Sản phẩm đã có trong giỏ hàng')
+                        listProductInCart.splice(phoneNew, -1)
+                        console.log('cart sau khi them trung ' + listProductInCart)
                         return listProductInCart
                     }
                 })
@@ -134,8 +136,6 @@ buttonAdd.forEach((itemAdd) => {
                 }
 
             }
-
-            console.log('san pham trong gio la ' + listProductInCart)
 
 
         }
